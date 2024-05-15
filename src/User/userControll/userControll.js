@@ -1,4 +1,4 @@
-var studentService = require('../userService');
+var userService = require('../userService');
 
 var createuserControllFn = async (req, res) => 
 {
@@ -23,7 +23,7 @@ catch(err)
 var loginUserControllerFn = async (req, res) => {
     var result = null;
     try {
-        result = await studentService.loginuserDBService(req.body);
+        result = await userService.loginuserDBService(req.body);
         if (result.status) {
             res.send({ "status": true, "message": result.msg });
         } else {
@@ -36,4 +36,4 @@ var loginUserControllerFn = async (req, res) => {
     }
 }
 
-module.exports = { createStudentControllerFn,loginUserControllerFn };
+module.exports = { createuserControllFn,loginUserControllerFn };
