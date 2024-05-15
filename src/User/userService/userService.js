@@ -1,22 +1,23 @@
-var studentModel = require('../userModule');
+var userModule = require('../userModel');
 var key = '123456789trytryrtyr';
 var encryptor = require('simple-encryptor')(key);
 
-module.exports.createStudentDBService = (studentDetails) => {
+module.exports.createUserDBService = (userDetails) => {
 
 
    return new Promise(function myFn(resolve, reject) {
 
-       var studentModelData = new studentModel();
+       var userModelData = new userModel();
 
-       studentModelData.firstname = studentDetails.firstname;
-       studentModelData.lastname = studentDetails.lastname;
-       studentModelData.email = studentDetails.email;
-       studentModelData.password = studentDetails.password;
-       var encrypted = encryptor.encrypt(studentDetails.password);
-       studentModelData.password = encrypted;
+       userModelData.firstname = userDetails.firstname;
+       userModelData.lastname = userDetails.lastname;
+       userModelData.email = userDetails.email;
+       userModelData.password = userDetails.password;
+       
+       var encrypted = encryptor.encrypt(userDetails.password);
+       userModelData.password = encrypted;
 
-       studentModelData.save(function resultHandle(error, result) {
+       userModelData.save(function resultHandle(error, result) {
 
            if (error) {
                reject(false);

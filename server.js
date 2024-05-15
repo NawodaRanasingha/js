@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const express =require('express');
+
 const cookieParser = require('cookie-parser');
 
 const cors = require('cors');
@@ -21,4 +22,6 @@ mongoose.connect("mongodb://localhost:27017/saloon")
         app.listen(5000, () => {
             console.log("App is listening on port 5000")
         })
-    })
+    });
+    app.use(express.json());
+app.use(routes);
