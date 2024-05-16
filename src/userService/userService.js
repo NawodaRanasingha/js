@@ -1,4 +1,4 @@
-var userModule = require('../userModel');
+var userModule = require('../../../model/userModel');
 var key = '123456789trytryrtyr';
 var encryptor = require('simple-encryptor')(key);
 
@@ -30,11 +30,11 @@ module.exports.createUserDBService = (userDetails) => {
 
 }
 
-module.exports.loginuserDBService = (studentDetails)=> 
+module.exports.loginuserDBService = (userDetails)=> 
 {
    return new Promise(function myFn(resolve, reject) 
    {
-      studentModel.findOne({ email: studentDetails.email},function getresult(errorvalue, result)
+      userModel.findOne({ email: userDetails.email},function getresult(errorvalue, result)
       {
          if(errorvalue)
          {
@@ -46,7 +46,7 @@ module.exports.loginuserDBService = (studentDetails)=>
             {
                var decrypted = encryptor.decrypt(result.password);
 
-               if(decrypted== studentDetails.password)
+               if(decrypted== userDetails.password)
                {
                   resolve({status: true,msg: "Student Validated Successfully"});
                }
